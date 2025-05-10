@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            background-color: white;
-            color: black;
-            font-family: monospace;
-            padding: 20px;
-            text-align: left;
-        }
-
-        h3 {
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        pre {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border: 1px solid #ccc;
-            overflow-x: auto;
-            white-space: pre-wrap;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logic and AI Code</title>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      font-family: monospace;
+      padding: 20px;
+      text-align: left;
+    }
+    h3 {
+      margin-top: 30px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border: 1px solid #ccc;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-    <h3>Family Tree:</h3>
-    <pre><code>
+
+  <h3>Family Tree:</h3>
+  <pre><code>
 parent_of(helen, lily).
 parent_of(oliver,james).
 parent_of(sophie, james).
@@ -76,11 +74,18 @@ uncle_of(X,Y):-
 ancestor_of(X,Y):- parent_of(X,Y).
 ancestor_of(X,Y):- parent_of(X,Z),
     ancestor_of(Z,Y).
-    </code></pre>
+  </code></pre>
+  <h4>Sample Queries:</h4>
+  <pre><code>
+?- parent_of(james, harry).
+?- father_of(oliver, james).
+?- grandfather_of(oliver, harry).
+?- sister_of(lily, james).
+?- ancestor_of(helen, harry).
+  </code></pre>
 
-    <h3>BFS:</h3>
-    <pre><code>
-%connected(+Start, +Goal, -Weight)
+  <h3>BFS:</h3>
+  <pre><code>
 connected(1,7,1).
 connected(1,8,1).
 connected(1,3,1).
@@ -111,10 +116,18 @@ breadth_first(Start, Goal, Visited, Path) :-
     append(Visited, [T|Extend], Visited2),
     append(Path, [T|Extend], [Next|Path2]),
     breadth_first(Next, Goal, Visited2, Path2).
-    </code></pre>
+  </code></pre>
+  <h4>Sample Queries:</h4>
+  <pre><code>
+?- breadth_first(1, 19, [], Path).
+?- breadth_first(1, 6, [], Path).
+?- breadth_first(7, 42, [], Path).
+?- breadth_first(3, 28, [], Path).
+?- next_node(1, X, []).
+  </code></pre>
 
-    <h3>DFS:</h3>
-    <pre><code>
+  <h3>DFS:</h3>
+  <pre><code>
 solve(Node, Solution)  :-
     depthfirst([], Node, Solution).
 
@@ -146,10 +159,18 @@ s(c,g).
 s(d,h).
 s(e,i).
 s(e,j).
-    </code></pre>
+  </code></pre>
+  <h4>Sample Queries:</h4>
+  <pre><code>
+?- solve(a, Solution).
+?- depthfirst([], a, Path).
+?- depthfirst2(a, Path, 3).
+?- depthfirst2(a, Path, 4).
+?- s(b, X).
+  </code></pre>
 
-    <h3>A*:</h3>
-    <pre><code>
+  <h3>A*:</h3>
+  <pre><code>
 edge(a, b, 2).
 edge(a, c, 3).
 edge(b, c, 1).
@@ -174,7 +195,16 @@ astar(Start, Goal, Visited, Path, Cost, AccCost) :-
         Cost = NewCost
     ;   astar(Next, Goal, NewVisited, Path, Cost, NewCost)
     ).
-    </code></pre>
+  </code></pre>
+  <h4>Sample Queries:</h4>
+  <pre><code>
+?- astar(a, d, Path, Cost).
+?- astar(a, c, Path, Cost).
+?- edge(a, b, W).
+?- heuristic(b, d, H).
+?- astar(b, d, P, C).
+  </code></pre>
+
 
     <h3>Regression:</h3>
     <pre><code>
